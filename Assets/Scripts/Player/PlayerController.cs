@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public int gridWidth = 4;
     public int gridHeight = 4;
     public Vector2Int startCell = new Vector2Int(0, 0);
+    public LayerMask obstacleLayer;
 
     private Vector2Int _currentCell;
     private bool _isMoving = false;
@@ -27,8 +28,26 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))  dir = new Vector2Int(-1, 0);
         else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) dir = new Vector2Int(1, 0);
         if (dir == Vector2Int.zero) return;
+
         Vector2Int target = _currentCell + dir;
-        if (IsInBounds(target)) StartCoroutine(MoveToCell(target));
+        if (!IsInBounds(target)) return;
+        if (IsCellBlocked(target)) return;
+
+        StartCoroutine(MoveToCell(target));
+    }
+
+    bool IsCellBlocked(Vector2Int cell)
+    {
+        Vector3 worldPos = CellToWorld(cell) + Vector3.up * 0.7f;
+        Vector3 halfExtents = new Vector3(0.4f, 0.6f, 0.4f);
+        // Check all colliders in the cell area; ignore the player itself
+        Collider[] hits = Physics.OverlapBox(worldPos, halfExtents);
+        foreach (var hit in hits)
+        {
+            if (hit.transform.root != transform)
+                return true;
+        }
+        return false;
     }
 
     IEnumerator MoveToCell(Vector2Int target)

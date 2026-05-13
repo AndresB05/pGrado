@@ -1,7 +1,7 @@
 {
   "dependencies": {
     "com.justinpbarnett.unity-mcp": {
-      "version": "file:C:/Users/andre/Downloads/unity-mcp-master/unity-mcp-master",
+      "version": "file:C:\\Users\\gerso\\Downloads\\unity-mcp-master\\unity-mcp-master",
       "depth": 0,
       "source": "local",
       "dependencies": {

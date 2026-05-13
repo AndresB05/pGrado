@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.justinpbarnett.unity-mcp": "file:C:/Users/andre/Downloads/unity-mcp-master/unity-mcp-master",
+    "com.justinpbarnett.unity-mcp": "file:C:\\Users\\gerso\\Downloads\\unity-mcp-master\\unity-mcp-master",
     "com.unity.ai.navigation": "2.0.12",
     "com.unity.collab-proxy": "2.12.4",
     "com.unity.ide.rider": "3.0.39",
